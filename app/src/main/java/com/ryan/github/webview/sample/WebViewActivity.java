@@ -84,7 +84,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         // 设置正确的cache mode以支持离线加载
         int cacheMode = NetworkUtils.isAvailable(this) ?
-                WebSettings.LOAD_DEFAULT : WebSettings.LOAD_CACHE_ELSE_NETWORK;
+                WebSettings.LOAD_CACHE_ELSE_NETWORK : WebSettings.LOAD_CACHE_ELSE_NETWORK;
         webSettings.setCacheMode(cacheMode);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -97,7 +97,7 @@ public class WebViewActivity extends AppCompatActivity {
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         }
         CacheConfig config = new CacheConfig.Builder(this)
-                .setCacheDir(getCacheDir() + File.separator + "custom")
+                .setCacheDir(getExternalCacheDir() + File.separator + "custom")
                 .setExtensionFilter(new CustomMimeTypeFilter())
                 .build();
         fastWebView.setCacheMode(FastCacheMode.FORCE, config);
